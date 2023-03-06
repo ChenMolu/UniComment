@@ -1,25 +1,24 @@
 package com.rocky.controller;
 
 
+import cn.hutool.core.util.RandomUtil;
 import com.rocky.dto.LoginFormDTO;
 import com.rocky.dto.Result;
 import com.rocky.entity.UserInfo;
+import com.rocky.mapper.UserMapper;
 import com.rocky.service.IUserInfoService;
 import com.rocky.service.IUserService;
+import com.rocky.utils.RegexUtils;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
- */
+
 @Slf4j
 @RestController
 @RequestMapping("/user")
@@ -31,13 +30,15 @@ public class UserController {
     @Resource
     private IUserInfoService userInfoService;
 
+
+
     /**
      * 发送手机验证码
      */
     @PostMapping("code")
     public Result sendCode(@RequestParam("phone") String phone, HttpSession session) {
-        // TODO 发送短信验证码并保存验证码
-        return Result.fail("功能未完成");
+        // 发送短信验证码并保存验证码
+        return userService.sendCode(phone,session);
     }
 
     /**
@@ -47,7 +48,8 @@ public class UserController {
     @PostMapping("/login")
     public Result login(@RequestBody LoginFormDTO loginForm, HttpSession session){
         // TODO 实现登录功能
-        return Result.fail("功能未完成");
+        return userService.login(loginForm,session);
+//        return Result.fail("功能未完成");
     }
 
     /**
