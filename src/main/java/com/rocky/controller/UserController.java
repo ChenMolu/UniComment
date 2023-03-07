@@ -1,17 +1,21 @@
 package com.rocky.controller;
 
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.rocky.dto.LoginFormDTO;
 import com.rocky.dto.Result;
+import com.rocky.dto.UserDTO;
 import com.rocky.entity.UserInfo;
 import com.rocky.mapper.UserMapper;
 import com.rocky.service.IUserInfoService;
 import com.rocky.service.IUserService;
 import com.rocky.utils.RegexUtils;
+import com.rocky.utils.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,7 +35,6 @@ public class UserController {
     private IUserInfoService userInfoService;
 
 
-
     /**
      * 发送手机验证码
      */
@@ -47,9 +50,8 @@ public class UserController {
      */
     @PostMapping("/login")
     public Result login(@RequestBody LoginFormDTO loginForm, HttpSession session){
-        // TODO 实现登录功能
+        //  实现登录功能
         return userService.login(loginForm,session);
-//        return Result.fail("功能未完成");
     }
 
     /**
@@ -64,8 +66,9 @@ public class UserController {
 
     @GetMapping("/me")
     public Result me(){
-        // TODO 获取当前登录的用户并返回
-        return Result.fail("功能未完成");
+        //  获取当前登录的用户并返回
+        UserDTO user = UserHolder.getUser();
+        return Result.ok(user);
     }
 
     @GetMapping("/info/{id}")
