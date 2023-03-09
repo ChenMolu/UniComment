@@ -40,3 +40,16 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+modules.xmltarget/**/.idea
+**/*.iws
+**/*.iml
+**/*.ipr
+**/modules.xml**/mvnw
+**/mvnw.cmd
+**/.mvn
