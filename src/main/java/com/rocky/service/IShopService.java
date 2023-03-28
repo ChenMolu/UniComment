@@ -1,5 +1,6 @@
 package com.rocky.service;
 
+import com.rocky.dto.Result;
 import com.rocky.entity.Shop;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -8,9 +9,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *  服务类
  * </p>
  *
- * @author 虎哥
- * @since 2021-12-22
  */
 public interface IShopService extends IService<Shop> {
+
+    public Result queryById(Long id);
 
 }
