@@ -68,7 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
 
         User user = query().eq("phone",phone).one();
-        log.debug(user.toString());
+//        log.debug(user.toString());
         if(user == null){
             user  = createUserWithPhone(phone);
         }
