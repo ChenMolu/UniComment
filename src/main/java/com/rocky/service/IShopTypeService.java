@@ -1,5 +1,6 @@
 package com.rocky.service;
 
+import com.rocky.dto.Result;
 import com.rocky.entity.ShopType;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-12-22
  */
 public interface IShopTypeService extends IService<ShopType> {
+
+    public Result getTypeList();
 
 }

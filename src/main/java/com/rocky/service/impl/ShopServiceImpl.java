@@ -7,6 +7,7 @@ import com.rocky.entity.Shop;
 import com.rocky.mapper.ShopMapper;
 import com.rocky.service.IShopService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.rocky.utils.RedisConstants;
 import io.lettuce.core.RedisURI;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
     private StringRedisTemplate stringRedisTemplate;
     @Override
     public Result queryById(Long id) {
-        String key = "cache:shop" + id;
+        String key = RedisConstants.CACHE_SHOP_KEY + id;
         // 从Redis中获取商铺信息
         String shopJson = stringRedisTemplate.opsForValue().get(key);
         //如果存在
