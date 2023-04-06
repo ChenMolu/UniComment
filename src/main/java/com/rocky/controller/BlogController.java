@@ -10,6 +10,7 @@ import com.rocky.service.IBlogService;
 import com.rocky.service.IUserService;
 import com.rocky.utils.SystemConstants;
 import com.rocky.utils.UserHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,11 +20,9 @@ import java.util.List;
  * <p>
  * 前端控制器
  * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
  */
 @RestController
+@Slf4j
 @RequestMapping("/blog")
 public class BlogController {
 
@@ -65,6 +64,7 @@ public class BlogController {
 
     @GetMapping("/hot")
     public Result queryHotBlog(@RequestParam(value = "current", defaultValue = "1") Integer current) {
+        log.debug("请求拦截/blog/hot"+current);
         // 根据用户查询
         Page<Blog> page = blogService.query()
                 .orderByDesc("liked")
